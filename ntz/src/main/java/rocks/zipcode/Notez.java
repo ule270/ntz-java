@@ -32,12 +32,11 @@ public final class Notez {
 
         /*
          * You will spend a lot of time right here.
-         *
          * instead of loadDemoEntries, you will implement a series
          * of method calls that manipulate the Notez engine.
          * See the first one:
          */
-        ntzEngine.loadDemoEntries();
+//        ntzEngine.loadDemoEntries();
 
 //        ntzEngine.saveDatabase();
 
@@ -47,8 +46,10 @@ public final class Notez {
         } else {
             if (args[0].equals("-r")) {
                 ntzEngine.addToCategory("General", args);
-            } else if (args[0].equals("-c")){
+            } else if (args[0].equals("-c")) {
                 ntzEngine.addToCategory(args[1], args);
+            } else if (args[0].equals("-f")){
+                ntzEngine.forgetNote(args[1], Integer.parseInt(args[2]) -1);
                 // this should give you an idea about how to TEST the Notez engine
                 // without having to spend lots of time messing with command line arguments.
             }
@@ -58,7 +59,6 @@ public final class Notez {
         /*
          * what other method calls do you need here to implement the other commands??
          */
-
     }
 
     private void addToCategory(String string, String[] args) {
@@ -67,11 +67,19 @@ public final class Notez {
             filemap.get(string).add(args[args.length -1]);
         } else {
             filemap.put(string, new NoteList(args[args.length -1]));
+            // -1 since they are numbered starting at 1 on the readMe
+        }
+    }
+    private void forgetNote(String string, int index){
+        if(filemap.containsKey(string)) {
+            filemap.get(string).remove(index);
+            if (filemap.get(string).size() == 0) {
+                filemap.remove(string);
+            }
         }
     }
 
     private void saveDatabase() {
-
         filemap.save();
     }
 
