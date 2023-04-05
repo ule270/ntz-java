@@ -56,10 +56,29 @@ public final class Notez {
             ntzEngine.saveDatabase();
 //          only saving after being modified
         }
-        /*
-         * what other method calls do you need here to implement the other commands??
-         */
     }
+
+    private void saveDatabase() {
+        filemap.save();
+    }
+
+    private void loadDatabase() {
+        filemap.load();
+    }
+
+    public void printResults() {
+        System.out.println(this.filemap.toString());
+    }
+
+    public void loadDemoEntries() {
+        filemap.put("General", new NoteList("The Very first Note"));
+        filemap.put("note2", new NoteList("A secret second note"));
+        filemap.put("category3", new NoteList("Did you buy bread AND eggs?"));
+        filemap.put("anotherNote", new NoteList("Hello from ZipCode!"));
+    }
+    /*
+     * Put all your additional methods that implement commands like forget here...
+     */
 
     private void addToCategory(String string, String[] args) {
 //        args.length is out of bounds bc greater than max index;
@@ -84,28 +103,4 @@ public final class Notez {
             filemap.get(string).set(index, message);
         }
     }
-
-    private void saveDatabase() {
-        filemap.save();
-    }
-
-    private void loadDatabase() {
-
-        filemap.load();
-    }
-
-    public void printResults() {
-        System.out.println(this.filemap.toString());
-    }
-
-    public void loadDemoEntries() {
-        filemap.put("General", new NoteList("The Very first Note"));
-        filemap.put("note2", new NoteList("A secret second note"));
-        filemap.put("category3", new NoteList("Did you buy bread AND eggs?"));
-        filemap.put("anotherNote", new NoteList("Hello from ZipCode!"));
-    }
-    /*
-     * Put all your additional methods that implement commands like forget here...
-     */
-
 }
