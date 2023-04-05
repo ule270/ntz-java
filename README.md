@@ -7,14 +7,15 @@ ntz is a commandline notes taker. use HashMap to store all the things.
 *How do you "persist" data from one running of a program to another??*
 
 This lab shows a simple "store it in a file" solution. 
-It also encourages you to try to make this useful to you so that you might end up using your own code as a tool to keep yourself organized(!).
+It also encourages you to try to make this useful to you so that you might end up 
+using your own code as a tool to keep yourself organized(!).
 
 NTZ is a command line note tool that doesn't involve terminal based editors, but does involve Java.
 You've been provided with a very simple file backed data store called `FileMap`.
 It acts like a Key/Value database, which can be stored in a file.
 It has an internal `HashMap<String,NoteList>` and all it does is `load()` and `save()` itself to
 a file named "ntz.db".
-It's purpose is to show you a simple way to persist your Notez' data into a file.
+Its purpose is to show you a simple way to persist your Notez' data into a file.
 See more about the ObjectInputStream/ObjectOutputStream classes.
 
 A `NoteList` is merely an ArrayList<String>. 
